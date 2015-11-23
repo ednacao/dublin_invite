@@ -5,11 +5,11 @@ Output the names and user ids of matching customers (within 100 km), sorted by u
 import json
 import math
 
-def load_file():
-	for line in open("customers.txt"):
-		line = line.strip()
-		parts = line.split(',')
-		latitude, user_id, name, longitude = parts
-		print parts[3]
-
-load_file()
+for line in open("customers.json"):
+	line = line.strip()
+	parsed_json = json.loads(line)
+	latitude = parsed_json['latitude']
+	user_id = parsed_json['user_id']
+	name = parsed_json['name']
+	longitude = parsed_json['longitude']
+	print latitude, user_id, name, longitude
