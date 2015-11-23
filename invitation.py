@@ -2,8 +2,14 @@
 
 Output the names and user ids of matching customers (within 100 km), sorted by user id (ascending)."""
 
+import json
+import math
+
 def load_file():
-	my_file = open("customers.txt")
-	print my_file.read()
+	for line in open("customers.txt"):
+		line = line.strip()
+		parts = line.split(',')
+		latitude, user_id, name, longitude = parts
+		print parts[3]
 
 load_file()

@@ -7,8 +7,8 @@ latitude_2 = 52.986375
 longitude_2 = -6.043701
 
 
-great_circle_result = math.acos(math.sin(latitude_dublin*latitude_2)
-	+ math.cos(latitude_dublin*latitude_2)
+great_circle_result = math.acos(math.sin(latitude_dublin)*math.sin(latitude_2)
+	+ math.cos(latitude_dublin)*math.cos(latitude_2)
 	* math.cos(longitude_2-longitude_dublin)
 	)
 
@@ -26,5 +26,4 @@ distance_between_points = 6371 * math.radians(great_circle_result)
 # arccos(sin1sin2 + cos1cos2cos(longitude1-longitude2))
 ###
 
-print great_circle_result
 print distance_between_points
