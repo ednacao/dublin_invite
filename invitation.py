@@ -13,3 +13,21 @@ for line in open("customers.json"):
 	name = parsed_json['name']
 	longitude = parsed_json['longitude']
 	print latitude, user_id, name, longitude
+
+
+# latitude_dublin = 53.3381985
+# longitude_dublin = -6.2592576
+
+EARTH_RADIUS_KM = 6367
+
+def spherical_law_of_cosines():
+	central_angle = math.acos(
+		(math.sin(latitude_dublin) * 
+		math.sin(latitude_2)) + 
+		(math.cos(latitude_dublin) * 
+		math.cos(latitude_2)) * 
+		(math.cos(longitude_2 - longitude_dublin))
+	)
+
+def great_circle_distance():
+	return
