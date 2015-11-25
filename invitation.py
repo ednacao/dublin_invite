@@ -5,18 +5,17 @@ Output the names and user ids of matching customers (within 100 km), sorted by u
 import json
 import math
 
-for line in open("customers.json"):
-	line = line.strip()
-	parsed_json = json.loads(line)
-	latitude = parsed_json['latitude']
-	user_id = parsed_json['user_id']
-	name = parsed_json['name']
-	longitude = parsed_json['longitude']
-	print latitude, user_id, name, longitude
 
+def parse_values():
+	for line in open("customers.json"):
+		line = line.strip()
+		parsed_json = json.loads(line)
+		latitude = parsed_json['latitude']
+		user_id = parsed_json['user_id']
+		name = parsed_json['name']
+		longitude = parsed_json['longitude']
+	return latitude, user_id, name, longitude
 
-# latitude_dublin = 53.3381985
-# longitude_dublin = -6.2592576
 
 EARTH_RADIUS_KM = 6367
 DUBLIN_LATITUDE = 53.3381985
@@ -24,6 +23,7 @@ DUBLIN_LONGITUDE = -6.2592576
 
 latitude_2 = 52.986375
 longitude_2 = -6.043701
+
 
 def spherical_law_of_cosines():
 	central_angle = math.acos(
@@ -35,9 +35,9 @@ def spherical_law_of_cosines():
 	)
 
 	arc_length = EARTH_RADIUS_KM * math.radians(central_angle)
-	print arc_length
+	print "Distance between points 1 and 2 is:",arc_length,"km."
 
-
+parse_values()
 spherical_law_of_cosines()
 
 
