@@ -6,38 +6,37 @@ import json
 import math
 
 
-def parse_values():
-	for line in open("customers.json"):
-		line = line.strip()
-		parsed_json = json.loads(line)
-		latitude = parsed_json['latitude']
-		user_id = parsed_json['user_id']
-		name = parsed_json['name']
-		longitude = parsed_json['longitude']
-	return latitude, user_id, name, longitude
-
-
+# Constants
 EARTH_RADIUS_KM = 6367
 DUBLIN_LATITUDE = 53.3381985
 DUBLIN_LONGITUDE = -6.2592576
 
-latitude_2 = 52.986375
-longitude_2 = -6.043701
 
+def calculate_arc_length():
+	# Load in file and parse values
+	for line in open("customers.json"):
+		line = line.strip() # <type str>
+		parsed_json = json.loads(line) # <type dict>
 
-def spherical_law_of_cosines():
-	central_angle = math.acos(
+		latitude = float(parsed_json['latitude'])
+		user_id = str(parsed_json['user_id'])
+		name = parsed_json['name']
+		longitude = float(parsed_json['longitude'])
+
+		# Spherical Law of Cosines
+		central_angle = math.acos(
 		(math.sin(DUBLIN_LATITUDE) * 
-		math.sin(latitude_2)) + 
+		math.sin(latitude)) + 
 		(math.cos(DUBLIN_LATITUDE) * 
-		math.cos(latitude_2)) * 
-		(math.cos(longitude_2 - DUBLIN_LONGITUDE))
-	)
+		math.cos(latitude)) * 
+		(math.cos(longitude - DUBLIN_LONGITUDE))
+		)
 
-	arc_length = EARTH_RADIUS_KM * math.radians(central_angle)
-	print "Distance between points 1 and 2 is:",arc_length,"km."
+		arc_length = EARTH_RADIUS_KM * math.radians(central_angle)
 
-parse_values()
-spherical_law_of_cosines()
+		if arc_length < 100:
+			print "ID:",user_id,name,"Arc length:",arc_length
 
+
+calculate_arc_length()
 
