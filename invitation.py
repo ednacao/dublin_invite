@@ -23,7 +23,7 @@ def calculate_arc_length(latitude,longitude):
 	return EARTH_RADIUS_KM * math.radians(central_angle)
 
 
-def parse_file():
+def process_file():
 	near_dublin_dict = {}
 	# Load in file and parse values
 	for line in open("customers.json"):
@@ -41,10 +41,8 @@ def parse_file():
 			near_dublin_dict[user_id] = name
 
 
-#function 3
 	for item in sorted(near_dublin_dict.keys()):
 		print "ID:", item, "Name:", near_dublin_dict[item]
 
 
-parse_file()
-
+process_file()
