@@ -30,12 +30,12 @@ def process_file():
 		line = line.strip() # <type str>
 		parsed_json = json.loads(line) # <type dict>
 
-		latitude_foo = float(parsed_json['latitude'])
+		latitude = float(parsed_json['latitude'])
 		user_id = int(parsed_json['user_id'])
 		name = parsed_json['name']
-		longitude_foo = float(parsed_json['longitude'])
+		longitude = float(parsed_json['longitude'])
 
-		arc_length = calculate_arc_length(latitude_foo, longitude_foo)
+		arc_length = calculate_arc_length(latitude, longitude)
 
 		if arc_length < 100:
 			near_dublin_dict[user_id] = name
