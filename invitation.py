@@ -2,6 +2,7 @@
 
 Output the names and user ids of matching customers (within 100 km), sorted by user id (ascending)."""
 
+import sys
 import json
 import math
 
@@ -26,9 +27,10 @@ def calculate_arc_length(latitude,longitude):
 def process_file():
 	near_dublin_dict = {}
 	# Load in file and parse values
-	for line in open("customers.json"):
-		line = line.strip() # <type str>
-		parsed_json = json.loads(line) # <type dict>
+	f = open(sys.argv[1]) if len(sys.argv) > 1 else sys.stdin    
+	for line in f:
+		line = line.strip()
+		parsed_json = json.loads(line)
 
 		latitude = float(parsed_json['latitude'])
 		user_id = int(parsed_json['user_id'])
